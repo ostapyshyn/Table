@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Modal from '../Modal'
 import Button from '../Button/Button'
 import styles from './Table.module.scss'
 
@@ -16,14 +17,7 @@ const Table = () => {
       </section>
 
       <section>
-        {open && (
-          <div className={styles.overlay}>
-            <div className={styles.modal}>
-              <Button onClick={() => setOpen(false)}>cancel</Button>
-              <Button>submit</Button>
-            </div>
-          </div>
-        )}
+        <Modal open={open} setOpen={setOpen} />
       </section>
     </main>
   )
