@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Modal from '../Modal'
 import Button from '../Button/Button'
 import styles from './Table.module.scss'
@@ -6,6 +6,21 @@ import styles from './Table.module.scss'
 const Table = () => {
   const [open, setOpen] = useState(false)
   const handleClickDownload = () => console.log('Clicked! Downloading')
+  let modalRef = useRef()
+  useEffect(() => {
+    let handler = (e) => {
+      if (!modalRef.current.contains(e.target)) {
+        setOpen(false)
+        console.log(modalRef.current)
+      }
+    }
+
+    document.addEventListener('mousedown', handler)
+
+    return () => {
+      document.removeEventListener('mousedown', handler)
+    }
+  })
 
   return (
     <main>
@@ -17,7 +32,7 @@ const Table = () => {
       </section>
 
       <section>
-        <Modal open={open} setOpen={setOpen} />
+        <Modal open={open} setOpen={setOpen} modalRef={modalRef} />
       </section>
     </main>
   )
