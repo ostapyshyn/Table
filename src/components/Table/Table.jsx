@@ -6,17 +6,15 @@ import styles from './Table.module.scss'
 const Table = () => {
   const [open, setOpen] = useState(false)
   const handleClickDownload = () => console.log('Clicked! Downloading')
+
   let modalRef = useRef()
   useEffect(() => {
     let handler = (e) => {
       if (!modalRef.current.contains(e.target)) {
         setOpen(false)
-        console.log(modalRef.current)
       }
     }
-
     document.addEventListener('mousedown', handler)
-
     return () => {
       document.removeEventListener('mousedown', handler)
     }

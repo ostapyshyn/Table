@@ -12,8 +12,8 @@
   background-color: #fff;
   width: 70%;
   max-width: 500px;
-  max-height: 300px;
-  padding: 16px;
+  padding-inline: 30px;
+  padding-bottom: 25px;
   border-radius: 10px;
   position: absolute;
   left: 50%;
@@ -64,9 +64,14 @@
     }
   }
 }
+.dropdowns {
+  display: flex;
+  gap: 30px;
+}
 
 .buttons {
   display: flex;
+  flex-direction: row;
   justify-content: end;
   gap: 10px;
 }
