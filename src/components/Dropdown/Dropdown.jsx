@@ -1,20 +1,21 @@
 import { useState } from 'react'
 import styles from './Dropdown.module.scss'
 
-function Dropdown({ title, data }) {
+function Dropdown({ title, data, setMasterHeader, setReportingHeader }) {
   const [isActive, setIsActive] = useState(false)
   const [checkedState, setCheckedState] = useState(new Array(data.length).fill(false))
-  let filteredData = []
 
   const handleOnChange = (position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
       index === position ? !item : item,
     )
     setCheckedState(updatedCheckedState)
-    filteredData = updatedCheckedState
+    const tableHeaders = updatedCheckedState
       .map((item, index) => (item ? data[index] : undefined))
       .filter((item) => item !== undefined)
-    console.log(filteredData)
+    setMasterHeader ? setMasterHeader(tableHeaders) : setReportingHeader(tableHeaders)
+
+    console.log(tableHeaders, 'show in dropdown')
   }
 
   return (
