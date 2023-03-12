@@ -18,35 +18,20 @@ const Table = () => {
   const [loading, setLoading] = React.useState(false)
 
   useEffect(() => {
-    loadReportingColumns()
-    loadReportingData()
+    loadData()
   }, [])
 
-  async function loadReportingColumns() {
+  async function loadData() {
     setLoading(true)
     try {
-      const data = await getReportingColumns()
+      const columns = await getReportingColumns()
+      const reportData = await getReportingData()
 
-      console.log(data, 'Start')
-      console.log(renameColumns(data), 'Finish')
-      console.log(data, 'Finish')
-
-      console.log(data)
-      setReportingColumns(renameColumns(data))
-    } catch (err) {
-      setError(err)
-    } finally {
-      setLoading(false)
-    }
-  }
-  async function loadReportingData() {
-    setLoading(true)
-    try {
-      const data = await getReportingData()
-      console.log(data, 'before')
-      console.log(renameObjects(data), 'after')
-
-      setReportingData(renameObjects(data))
+      console.log(columns, 'columns')
+      console.log(reportData, 'reportData')
+      
+      setReportingColumns(renameColumns(columns))
+      setReportingData(renameObjects(reportData))
     } catch (err) {
       setError(err)
     } finally {
