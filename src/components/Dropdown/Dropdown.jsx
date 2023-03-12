@@ -38,13 +38,13 @@ function Dropdown({ title, data, setMasterHeader, setReportingHeader }) {
                     <div className="left-section">
                       <input
                         type="checkbox"
-                        id={`custom-checkbox-${index}`}
+                        id={`custom-checkbox-${name}`}
                         name={name}
                         value={name}
                         checked={checkedState[index]}
                         onChange={() => handleOnChange(index)}
                       />
-                      <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
+                      <label htmlFor={`custom-checkbox-${name}`}>{name}</label>
                     </div>
                   </div>
                 </li>

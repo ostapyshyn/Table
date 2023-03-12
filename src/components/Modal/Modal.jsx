@@ -3,10 +3,7 @@ import Button from '../Button'
 import Dropdown from '../Dropdown'
 import styles from './Modal.module.scss'
 
-const masterData = ['id', 'name', 'Tax id', 'Primary Contact', 'Created On', 'Created By']
-const reportingData = ['age', 'city', 'Agency name', 'Fax number']
-
-const Modal = ({ open, setOpen, modalRef, setAllHeaders }) => {
+const Modal = ({ open, setOpen, modalRef, setAllHeaders, reportingColumns, masterColumns }) => {
   const [masterHeaders, setHeaders] = useState([])
   const [reportingHeaders, setReportingHeaders] = useState([])
 
@@ -27,10 +24,10 @@ const Modal = ({ open, setOpen, modalRef, setAllHeaders }) => {
       <div className={styles.modal} ref={modalRef}>
         <h3>Reporting Columns</h3>
         <div className={styles.dropdowns}>
-          <Dropdown title={'Master Data'} data={masterData} setMasterHeader={setMasterHeader} />
+          <Dropdown title={'Master Data'} data={masterColumns} setMasterHeader={setMasterHeader} />
           <Dropdown
             title={'Reporting Data'}
-            data={reportingData}
+            data={reportingColumns}
             setReportingHeader={setReportingHeader}
           />
         </div>
