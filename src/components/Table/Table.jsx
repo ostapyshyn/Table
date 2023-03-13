@@ -43,7 +43,7 @@ const Table = () => {
     }
   })
 
-  if (c_loading || loading) {
+  if (true) {
     return <Spinner />
   }
   if (c_error || error) {
