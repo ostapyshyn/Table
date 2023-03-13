@@ -16,11 +16,10 @@ const Modal = ({ open, setOpen, modalRef, setAllHeaders, reportingColumns, maste
 
   function handleClickSubmit() {
     setAllHeaders(masterHeaders.concat(reportingHeaders))
-    console.log('I was clicked')
   }
 
   return (
-    <div className={`${styles.overlay} ${styles.animated} ${open ? styles.show : ''}`}>
+    <section className={`${styles.overlay} ${styles.animated} ${open ? styles.show : ''}`}>
       <div className={styles.modal} ref={modalRef}>
         <h3>Reporting Columns</h3>
         <div className={styles.dropdowns}>
@@ -37,7 +36,7 @@ const Modal = ({ open, setOpen, modalRef, setAllHeaders, reportingColumns, maste
           <Button onClick={handleClickSubmit}>submit</Button>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

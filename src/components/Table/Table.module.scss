@@ -5,6 +5,27 @@
     justify-content: end;
     gap: 10px;
   }
+  .download_btn {
+    color: white;
+    background-color: dodgerblue;
+    border: none;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    opacity: 1;
+    transition: all 0.1s ease-in-out;
+    &:hover {
+      background-color: #2a52be;
+      box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+      transform: translateY(-1px);
+    }
+    &:active {
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+      transform: translateY(0);
+    }
+  }
 }
-
-

@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -28,14 +28,13 @@ table {
   max-width: 80rem;
 }
 
-
 td {
   font-size: 1.6rem;
   line-height: 1.6;
 }
 
 thead {
-  font-size: 1.8rem;
+  font-size: 1.1rem;
   background-color: #443c68;
   color: #fff;
 }
@@ -44,10 +43,10 @@ th,
 td {
   border: 1px solid #443c68;
   min-width: 100%;
-  padding: 1.5rem;
-  line-height: 1.7;
+  padding: 1rem;
+  line-height: 1.5;
 }
 
 td {
-  font-size: 1.4rem;
+  font-size: 1rem;
 }

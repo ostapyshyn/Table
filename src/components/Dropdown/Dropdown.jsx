@@ -14,8 +14,6 @@ function Dropdown({ title, data, setMasterHeader, setReportingHeader }) {
       .map((item, index) => (item ? data[index] : undefined))
       .filter((item) => item !== undefined)
     setMasterHeader ? setMasterHeader(tableHeaders) : setReportingHeader(tableHeaders)
-
-    console.log(tableHeaders, 'show in dropdown')
   }
 
   return (

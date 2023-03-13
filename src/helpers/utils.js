@@ -24,3 +24,12 @@ export function renameColumns(array) {
 export function filterMasterColumns(master, report) {
   return master.filter((column) => !report.includes(column))
 }
+
+export function removeKeys(table, keys) {
+  const output = renameObjects(table).map((node) => {
+    const newObj = {}
+    keys.forEach((key) => (newObj[key] = node[key]))
+    return newObj
+  })
+  return output
+}
