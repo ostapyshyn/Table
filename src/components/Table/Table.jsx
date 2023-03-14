@@ -13,10 +13,17 @@ import {
   removeKeys,
 } from '../../helpers/utils.js'
 import { CSVLink } from 'react-csv'
+import useBodyScrollLock from '../../hooks/useBodyScrollLock'
 
 const Table = () => {
   const [open, setOpen] = useState(false)
   const [allHeaders, setAllHeaders] = useState([])
+  const [isLocked, toggle] = useBodyScrollLock()
+
+  function handleButtonModalClick() {
+    toggle()
+    setOpen(true)
+  }
 
   const {
     data: columns,
@@ -63,7 +70,7 @@ const Table = () => {
             </CSVLink>
           )}
 
-          <Button onClick={() => setOpen(true)}>
+          <Button onClick={handleButtonModalClick}>
             {allHeaders.length === 0 ? 'SELECT' : `SELECTED(${allHeaders.length})`}
           </Button>
         </div>
