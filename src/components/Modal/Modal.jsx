@@ -1,11 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import useScrollLock from '../../hooks/useScrollLock'
 import Button from '../Button'
 import Dropdown from '../Dropdown'
 import styles from './Modal.module.scss'
 
-const Modal = ({ open, setOpen, modalRef, setAllHeaders, reportingColumns, masterColumns }) => {
+const Modal = ({ open, setOpen, setAllHeaders, reportingColumns, masterColumns }) => {
   const [masterHeaders, setHeaders] = useState([])
   const [reportingHeaders, setReportingHeaders] = useState([])
+  const { unlockScroll } = useScrollLock()
+
+  let modalRef = useRef()
+  useEffect(() => {
+    let handler = (e) => {
+      if (!modalRef.current.contains(e.target)) {
+        unlockScroll()
+        setOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handler)
+    return () => {
+      document.removeEventListener('mousedown', handler)
+    }
+  })
 
   const setMasterHeader = (theaders) => {
     setHeaders(theaders)
@@ -16,6 +32,10 @@ const Modal = ({ open, setOpen, modalRef, setAllHeaders, reportingColumns, maste
 
   function handleClickSubmit() {
     setAllHeaders(masterHeaders.concat(reportingHeaders))
+  }
+  function handleClickCancel() {
+    unlockScroll()
+    setOpen(false)
   }
 
   return (
@@ -32,7 +52,7 @@ const Modal = ({ open, setOpen, modalRef, setAllHeaders, reportingColumns, maste
         </div>
 
         <div className={styles.buttons}>
-          <Button onClick={() => setOpen(false)}>cancel</Button>
+          <Button onClick={handleClickCancel}>cancel</Button>
           <Button onClick={handleClickSubmit}>submit</Button>
         </div>
       </div>

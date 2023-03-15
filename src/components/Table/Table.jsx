@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import DynamicTable from '../DynamicTable'
 import Spinner from '../Spinner/Spinner'
 import useFetch from '../../hooks/useFetch'
 import Modal from '../Modal'
 import Button from '../Button/Button'
 import styles from './Table.module.scss'
-
 import {
   renameObjects,
   renameColumns,
@@ -13,15 +12,15 @@ import {
   removeKeys,
 } from '../../helpers/utils.js'
 import { CSVLink } from 'react-csv'
-import useBodyScrollLock from '../../hooks/useBodyScrollLock'
+import useScrollLock from '../../hooks/useScrollLock'
 
 const Table = () => {
   const [open, setOpen] = useState(false)
   const [allHeaders, setAllHeaders] = useState([])
-  const [isLocked, toggle] = useBodyScrollLock()
+  const { lockScroll } = useScrollLock()
 
-  function handleButtonModalClick() {
-    toggle()
+  function handleModalOpen() {
+    lockScroll()
     setOpen(true)
   }
 
@@ -36,19 +35,6 @@ const Table = () => {
     loading,
     error,
   } = useFetch('https://dynamicreport.azurewebsites.net/api/GetReportingData')
-
-  let modalRef = useRef()
-  useEffect(() => {
-    let handler = (e) => {
-      if (!modalRef.current.contains(e.target)) {
-        setOpen(false)
-      }
-    }
-    document.addEventListener('mousedown', handler)
-    return () => {
-      document.removeEventListener('mousedown', handler)
-    }
-  })
 
   if (c_loading || loading) {
     return <Spinner />
@@ -70,7 +56,7 @@ const Table = () => {
             </CSVLink>
           )}
 
-          <Button onClick={handleButtonModalClick}>
+          <Button onClick={handleModalOpen}>
             {allHeaders.length === 0 ? 'SELECT' : `SELECTED(${allHeaders.length})`}
           </Button>
         </div>
@@ -82,7 +68,6 @@ const Table = () => {
       <Modal
         open={open}
         setOpen={setOpen}
-        modalRef={modalRef}
         setAllHeaders={setAllHeaders}
         reportingColumns={renameColumns(columns)}
         masterColumns={filterMasterColumns(
